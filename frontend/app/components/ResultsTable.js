@@ -1,7 +1,7 @@
 
 export default function ResultTable({categoryData,title}) {
     return (
-        <main className="result-card">
+        <article className="result-card">
             <header>
                 <h2 className="category">{title}</h2>
             </header>
@@ -10,6 +10,7 @@ export default function ResultTable({categoryData,title}) {
                     <thead>
                     <tr >
                         <th >Platform</th>
+                        <th >Category</th>
                         <th >Status</th>
                     </tr>
                     </thead>
@@ -17,13 +18,14 @@ export default function ResultTable({categoryData,title}) {
                         {categoryData.map((c)=>(
                           <tr key={c.platform}>
                         <td>{c.platform}</td>
-                        <td className={`platform-status-${c.status}`}>{c.status}</td>
+                        <td>{c.category}</td>
+                        <td ><span className={`platform-status-${c.status}`}>{c.status}</span></td>
                     </tr>  
                         ))}
                     
                     </tbody>
                 </table>
             </section>
-        </main>
+        </article>
     )
 }

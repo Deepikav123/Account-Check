@@ -42,6 +42,14 @@
 }
 
 .search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.search-button {
   color: white;
   background-color: rgb(80, 80, 240);
   font-weight: bold;
@@ -50,6 +58,26 @@
   border-radius: 10px;
   /* box-shadow: 0px 0px 2px gray; */
   cursor: pointer;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.search-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .error-message {
@@ -70,6 +98,13 @@
 }
 
 /* table */
+table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 table th {
   padding: 15px 20px;
 
@@ -80,10 +115,13 @@ table td {
 
 }
 
-tbody {
+/* tbody {
   text-align: center;
-}
+} */
 
+/* thead{
+  text-align: center;
+} */
 .result-card {
   border-radius: 10px;
   box-shadow: 0px 0px 2px gray;
@@ -92,7 +130,7 @@ tbody {
 
 .result-cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   margin: 20px 0px;
   gap: 10px;
 }
@@ -106,19 +144,27 @@ tbody {
 
 .platform-status-Registered {
   background-color: #39cd39;
-  display: inline-table;
   padding: 2px;
   color: white;
   border-radius: 10px;
 }
 
 .platform-status-Not-registered {
-  background-color: #e51219;
-  display: inline-table;
+  background-color: rgb(108, 102, 102);
+
   padding: 2px;
   color: white;
   border-radius: 10px;
 }
+
+.platform-status-Check-Failed {
+  background-color: #e51219;
+
+  padding: 2px;
+  color: white;
+  border-radius: 10px;
+}
+
 
 /* Summary Cards */
 .summary-card {
@@ -153,7 +199,52 @@ tbody {
   border-radius: 10px;
 
 }
-.summary-quantity{
+
+.summary-quantity {
   font-size: larger;
   font-weight: bold;
+}
+
+.retry {
+  display: flex;
+  justify-content: end;
+  margin: 10px 20px;
+}
+
+.retry-button {
+  padding: 10px;
+  background-color: rgb(80, 80, 240);
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0px 0px 2px gray;
+  color: white;
+  cursor: pointer;
+}
+.retry-icon{
+  font-weight: bold;
+}
+.error-display-section{
+  display: flex;
+  justify-content: end;
+  margin: 5px 10px;
+}
+.err-message{
+  color: red;
+}
+@media (max-width: 600px) {
+  .result-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .homepage-section {
+    margin: 20px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .homepage-input-body {
+    grid-template-columns: 1fr;
+  }
 }
