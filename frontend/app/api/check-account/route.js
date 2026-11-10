@@ -3,18 +3,18 @@ export async function POST(req) {
         {
             platform: "Facebook",
             category: "Social Media",
-            status: Math.random() < 0.5 ? "Registered" : "Not-registered"
+            status: Math.random() < 0.5 ? "Registered" : "Not registered"
         },
         {
             platform: "Instagram",
             category: "Social Media",
-            status: Math.random() < 0.5 ? "Registered" : "Not-registered"
+            status: Math.random() < 0.5 ? "Registered" : "Not registered"
 
         },
         {
             platform: "WhatsApp",
             category: "Social Media",
-            status: Math.random() < 0.5 ? "Registered" : "Not-registered"
+            status: Math.random() < 0.5 ? "Registered" : "Not registered"
 
         }
     ]
@@ -22,19 +22,19 @@ export async function POST(req) {
         {
             platform: "Amazon",
             category: "E-commerce",
-            status: Math.random() < 0.5 ? "Registered" : "Not-registered"
+            status: Math.random() < 0.5 ? "Registered" : "Not registered"
 
         },
         {
             platform: "Flipkart",
             category: "E-commerce",
-            status: Math.random() < 0.5 ? "Registered" : "Not-registered"
+            status: Math.random() < 0.5 ? "Registered" : "Not registered"
 
         },
         {
             platform: "Myntra",
             category: "E-commerce",
-            status: Math.random() < 0.5 ? "Registered" : "Not-registered"
+            status: Math.random() < 0.5 ? "Registered" : "Not registered"
 
         }
 
@@ -43,19 +43,19 @@ export async function POST(req) {
         {
             platform: "Swiggy",
             category: "Food Delivery",
-            status: Math.random() < 0.5 ? "Registered" : "Not-registered"
+            status: Math.random() < 0.5 ? "Registered" : "Not registered"
 
         },
         {
             platform: "Zomato",
             category: "Food Delivery",
-            status: Math.random() < 0.5 ? "Registered" : "Not-registered"
+            status: Math.random() < 0.5 ? "Registered" : "Not registered"
 
         },
         {
             platform: "Domino's",
             category: "Food Delivery",
-            status: Math.random() < 0.5 ? "Registered" : "Not-registered"
+            status: Math.random() < 0.5 ? "Registered" : "Not registered"
 
         }
     ]
@@ -63,19 +63,19 @@ export async function POST(req) {
         {
             platform: "MakeMyTrip",
             category: "Travel",
-            status: Math.random() < 0.5 ? "Registered" : "Not-registered"
+            status: Math.random() < 0.5 ? "Registered" : "Not registered"
 
         },
         {
             platform: "Booking.com",
             category: "Travel",
-            status: Math.random() < 0.5 ? "Registered" : "Not-registered"
+            status: Math.random() < 0.5 ? "Registered" : "Not registered"
 
         },
         {
             platform: "Goibibo",
             category: "Travel",
-            status: Math.random() < 0.5 ? "Registered" : "Not-registered"
+            status: Math.random() < 0.5 ? "Registered" : "Not registered"
 
         }
 
@@ -102,7 +102,7 @@ export async function POST(req) {
             ...travelObject
         ];
         const failedCheckIndex = Math.floor(Math.random() * allPlatforms.length);
-        allPlatforms[failedCheckIndex].status = "Check-Failed"
+        allPlatforms[failedCheckIndex].status = "Check failed"
         const result = {
             socialMediaCategory: socialMediaObject,
             eCommerceCategory: eCommerceObject,
@@ -126,7 +126,7 @@ export async function PUT(req) {
     try {
         const body = await req.json();
         const data = body.failedData;
-        const validate = data.filter((d) => d.status != "Check-Failed");
+        const validate = data.filter((d) => d.status != "Check failed");
         if (validate.length>0) {
             return Response.json(
                 { message: "Incorrect data" },
@@ -138,7 +138,7 @@ export async function PUT(req) {
         })
         const updatedData = data.map((d) =>({
             ...d,
-            status :Math.random() < 0.5 ? "Registered" : "Not-registered"
+            status :Math.random() < 0.5 ? "Registered" : "Not registered"
         }) 
 
         );

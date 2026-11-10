@@ -98,7 +98,7 @@ export default function HomePage() {
             ...data.eCommerceCategory,
             ...data.foodDeliveryCategory,
             ...data.travelCategory
-          ]} />
+          ]}  setData={setData}/>
         </div>}
         {search == true && loading == false && <div className="result-cards">
           <ResultTable title="SOCIAL MEDIA" categoryData={data.socialMediaCategory} />

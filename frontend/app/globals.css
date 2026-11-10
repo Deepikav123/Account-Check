@@ -142,27 +142,30 @@ table td {
   padding: 15px;
 }
 
-.platform-status-Registered {
-  background-color: #39cd39;
-  padding: 2px;
-  color: white;
-  border-radius: 10px;
+.platform-status-registered,
+.platform-status-not-registered,
+.platform-status-check-failed {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    padding: 3px 6px;
+    border-radius: 20px;
+    color: white;
 }
 
-.platform-status-Not-registered {
+.platform-status-registered {
+  background-color: #39cd39;
+}
+
+.platform-status-not-registered {
   background-color: rgb(108, 102, 102);
 
-  padding: 2px;
-  color: white;
-  border-radius: 10px;
 }
 
-.platform-status-Check-Failed {
+.platform-status-check-failed {
   background-color: #e51219;
 
-  padding: 2px;
-  color: white;
-  border-radius: 10px;
 }
 
 
@@ -212,6 +215,10 @@ table td {
 }
 
 .retry-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   padding: 10px;
   background-color: rgb(80, 80, 240);
   border-radius: 10px;

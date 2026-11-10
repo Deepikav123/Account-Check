@@ -8,26 +8,28 @@ function SummaryData({ quantity, status }) {
     )
 }
 
-export default function SummaryCard({ accountData }) {
+export default function SummaryCard({ accountData, setData }) {
 
     const registered = accountData.filter((a) => (
         a.status == "Registered"
     )).length;
 
     const notRegistered = accountData.filter(
-        a => a.status === "Not-registered"
+        a => a.status === "Not registered"
     ).length;
 
     const failed = accountData.filter(
-        a => a.status === "Check-Failed"
+        a => a.status === "Check failed"
     ).length;
 
     const total = accountData.length;
     const [retryLoading, setRetryLoading] = useState(false);
     const [errMessage, setErrMessage] = useState("");
-    const failedData = accountData.filter((a) => a.status === "Check-Failed");
+    const failedData = accountData.filter((a) => a.status === "Check failed");
     console.log(failedData);
     async function retryFailed() {
+        setRetryLoading(true);
+
         setErrMessage("");
         try {
             const response = await fetch("/api/check-account", {
@@ -44,10 +46,33 @@ export default function SummaryCard({ accountData }) {
                 setErrMessage(data.message);
                 return;
             }
-            // accountData.map((a)=>({
-            //     ...a,
-            //     a.status==
-            // }))
+
+            setData((prevData) => {
+                const updateCategory = (category) => {
+                    return category.map((plat) => {
+                        const updated = data.updatedData.find(
+                            (d) => d.platform === plat.platform
+                        );
+
+                        if (updated) {
+                            return updated;
+                        }
+
+                        return plat;
+                    });
+                };
+
+                return {
+                    ...prevData,
+                    socialMediaCategory: updateCategory(prevData.socialMediaCategory),
+                    eCommerceCategory: updateCategory(prevData.eCommerceCategory),
+                    foodDeliveryCategory: updateCategory(prevData.foodDeliveryCategory),
+                    travelCategory: updateCategory(prevData.travelCategory)
+                };
+            });
+
+           
+
         }
         catch (error) {
             setErrMessage("Unable to fetch results. Please try again.");
@@ -68,10 +93,9 @@ export default function SummaryCard({ accountData }) {
                     <SummaryData quantity={failed} status="Check Failed" />
                     <SummaryData quantity={total} status="Total Platforms" />
                 </div>
-                {failed && <div className="retry">
+                {failed>0 && <div className="retry">
                     <button className="retry-button" disabled={retryLoading} onClick={
                         () => {
-                            setRetryLoading(true);
                             retryFailed();
                         }
                     }>
