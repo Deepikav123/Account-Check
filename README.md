@@ -1,36 +1,134 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Account Check
+
+A web application that allows users to check the registration status of a mobile number across multiple platforms. The results are displayed category-wise with a summary of registered, not registered, and failed checks.
+
+## Features
+
+- **Mobile Number Validation:** Accepts valid 10-digit Indian mobile numbers.
+- **Account Checking:** Checks registration status across 12 mock platforms.
+- **Category-wise Results:** Displays results under four categories:
+  - Social Media
+  - E-commerce
+  - Food Delivery
+  - Travel
+- **Loading State:** Displays a loading indicator while fetching results.
+- **Summary Dashboard:** Shows the total registered, not registered, and failed checks.
+- **Retry Functionality:** Allows users to retry failed platform checks.
+- **PDF Download:** Downloads the results and summary as a PDF report.
+- **Responsive Design:** Supports desktop and mobile screens.
+
+## Tech Stack
+
+- **Frontend:** Next.js, React, JavaScript, CSS
+- **Backend:** Node.js, Next.js API Routes
+- **PDF Generation:** jsPDF, jsPDF-AutoTable
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js installed
+- npm installed
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone <https://github.com/Deepikav123/Account-Check.git>
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd Account-Check
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open the application in your browser:
+
+   ```text
+   http://localhost:3000
+   ```
+
+## API Endpoints
+
+### 1. Check Account Status
+
+**Endpoint:** `/api/check-account`
+
+**Method:** `POST`
+
+**Request Body:**
+
+```json
+{
+  "mobile": "9876543210"
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Functionality:**
+- Validates the Indian mobile number.
+- Returns mock registration data for 12 platforms.
+- Simulates a random delay of 1–2 seconds.
+- Randomly assigns one platform the status `Check failed`.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 2. Retry Failed Checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Endpoint:** `/api/check-account`
 
-## Learn More
+**Method:** `PUT`
 
-To learn more about Next.js, take a look at the following resources:
+**Request Body:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```json
+{
+  "failedData": [
+    {
+      "platform": "Example Platform",
+      "status": "Check failed"
+    }
+  ]
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Functionality:**
+- Accepts failed platform records.
+- Reprocesses the failed checks.
+- Returns updated registration statuses.
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```text
+Account-Check/
+├── app/
+│   ├── api/
+│   │   └── check-account/
+│   │       └── route.js
+│   ├── components/
+│   │   ├── ResultsTable.jsx
+│   │   └── SummaryCard.jsx
+│   ├── icons/
+│   ├── page.js
+│   ├── layout.js
+│   ├── globals.css
+│   └── pdfGenerator.js
+├── public/
+├── package.json
+└── README.md
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Important Note
+
+This application uses mock data for demonstration purposes. It does not connect to any real platform, external API, or service to verify mobile number registrations.
