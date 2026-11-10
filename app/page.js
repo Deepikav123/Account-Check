@@ -2,8 +2,8 @@
 import { useState } from "react";
 import homepageIcon from "./icons/homepage-icon.png"
 import Image from "next/image";
-import ResultTable from "./components/ResultsTable";
-import SummaryCard from "./components/SummaryCard";
+import ResultTable from "./components/ResultsTable.jsx";
+import SummaryCard from "./components/SummaryCard.jsx";
 import downloadPDF from "./pdfGenerator.js";
 export default function HomePage() {
   const [mobileNumber, setMobilenumber] = useState("");
