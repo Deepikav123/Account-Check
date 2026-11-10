@@ -59,13 +59,13 @@ Make sure you have the following installed:
 **1. Clone the repository**
 
 ```bash
-git clone <https://github.com/Deepikav123/Account-Check.git>
+git clone https://github.com/Deepikav123/Account-Check.git
 ```
 
 **2. Navigate to the project directory**
 
 ```bash
-cd <Account Check>
+cd Account Check
 ```
 
 **3. Install dependencies**
