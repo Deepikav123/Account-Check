@@ -56,6 +56,7 @@ export default function HomePage() {
   async function fetchData() {
     setLoading(true);
     setSearch(true);
+    setErrMessage("");
     try {
 
       const response = await fetch("/api/check-account/", {
