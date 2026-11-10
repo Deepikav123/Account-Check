@@ -126,8 +126,19 @@ export async function PUT(req) {
     try {
         const body = await req.json();
         const data = body.failedData;
+        if (
+            !Array.isArray(data) ||
+            data.length === 0 ||
+            !data.every((d) => d.status === "Check failed")
+        ) {
+            return Response.json(
+                { message: "Invalid failed data" },
+                { status: 400 }
+            );
+        }
+
         const validate = data.filter((d) => d.status != "Check failed");
-        if (validate.length>0) {
+        if (validate.length > 0) {
             return Response.json(
                 { message: "Incorrect data" },
                 { status: 400 }
@@ -136,22 +147,22 @@ export async function PUT(req) {
         await new Promise((resolve) => {
             setTimeout(resolve, Math.random() * 1000 + 1000);
         })
-        const updatedData = data.map((d) =>({
+        const updatedData = data.map((d) => ({
             ...d,
-            status :Math.random() < 0.5 ? "Registered" : "Not registered"
-        }) 
+            status: Math.random() < 0.5 ? "Registered" : "Not registered"
+        })
 
         );
-        const result={
-            updatedData:updatedData
+        const result = {
+            updatedData: updatedData
         }
         return Response.json(
-            result,{
-                status:200
-            }
+            result, {
+            status: 200
+        }
         )
     }
-     catch {
+    catch {
         return Response.json({ message: "Something went wrong" },
             { status: 500 })
     }
