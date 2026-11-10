@@ -4,7 +4,7 @@ import homepageIcon from "./icons/homepage-icon.png"
 import Image from "next/image";
 import ResultTable from "./components/ResultsTable";
 import SummaryCard from "./components/SummaryCard";
-
+import downloadPDF from "./pdfGenerator.js";
 export default function HomePage() {
   const [mobileNumber, setMobilenumber] = useState("");
   const [errMessage, setErrMessage] = useState("");
@@ -26,6 +26,31 @@ export default function HomePage() {
     return true;
   }
 
+  const allPlatforms = [
+    ...data.socialMediaCategory,
+    ...data.eCommerceCategory,
+    ...data.foodDeliveryCategory,
+    ...data.travelCategory
+  ];
+
+  const registered = allPlatforms.filter(
+    p => p.status === "Registered"
+  ).length;
+
+  const notRegistered = allPlatforms.filter(
+    p => p.status === "Not registered"
+  ).length;
+
+  const failed = allPlatforms.filter(
+    p => p.status === "Check failed"
+  ).length;
+
+  const summary = {
+    registered,
+    notRegistered,
+    failed,
+    total: allPlatforms.length
+  };
 
 
   async function fetchData() {
@@ -93,12 +118,7 @@ export default function HomePage() {
         }
 
         {search == true && loading == false && <div className="summary-section">
-          <SummaryCard accountData={[
-            ...data.socialMediaCategory,
-            ...data.eCommerceCategory,
-            ...data.foodDeliveryCategory,
-            ...data.travelCategory
-          ]}  setData={setData}/>
+          <SummaryCard accountData={allPlatforms} setData={setData} summary={summary} />
         </div>}
         {search == true && loading == false && <div className="result-cards">
           <ResultTable title="SOCIAL MEDIA" categoryData={data.socialMediaCategory} />
@@ -106,6 +126,14 @@ export default function HomePage() {
           <ResultTable title="FOOD DELIVERY" categoryData={data.foodDeliveryCategory} />
           <ResultTable title="TRAVEL" categoryData={data.travelCategory} />
         </div>}
+    {search && !loading && <div className="download-section">
+      <button onClick={() => {
+        downloadPDF(mobileNumber, data, summary)
+      }}
+        className="download-button">
+        Download PDF
+      </button>
+    </div>}
       </section>
     </main>
   )

@@ -59,7 +59,9 @@
   /* box-shadow: 0px 0px 2px gray; */
   cursor: pointer;
 }
-
+.search-button:hover {
+    background-color: rgb(60, 60, 210);
+}
 .spinner {
   width: 16px;
   height: 16px;
@@ -115,13 +117,6 @@ table td {
 
 }
 
-/* tbody {
-  text-align: center;
-} */
-
-/* thead{
-  text-align: center;
-} */
 .result-card {
   border-radius: 10px;
   box-shadow: 0px 0px 2px gray;
@@ -227,6 +222,9 @@ table td {
   color: white;
   cursor: pointer;
 }
+.retry-button:hover {
+    background-color: rgb(60, 60, 210);
+}
 .retry-icon{
   font-weight: bold;
 }
@@ -254,4 +252,25 @@ table td {
   .homepage-input-body {
     grid-template-columns: 1fr;
   }
+}
+
+/* Download */
+.download-section {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 0;
+}
+
+.download-button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(80, 80, 240);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.download-button:hover {
+    background-color: rgb(60, 60, 210);
 }
