@@ -74,6 +74,7 @@ export default function HomePage() {
         return;
       }
       setData(data);
+
     }
     catch (error) {
       setErrMessage("Unable to fetch results. Please try again.");
@@ -109,7 +110,6 @@ export default function HomePage() {
             const validateNumber = postNumber(mobileNumber);
             if (validateNumber) {
               fetchData();
-
             }
 
           }}> {loading && <span className="spinner"></span>}{loading ? "Checking..." : "Search"}</button>
@@ -127,14 +127,14 @@ export default function HomePage() {
           <ResultTable title="FOOD DELIVERY" categoryData={data.foodDeliveryCategory} />
           <ResultTable title="TRAVEL" categoryData={data.travelCategory} />
         </div>}
-    {search && !loading && <div className="download-section">
-      <button onClick={() => {
-        downloadPDF(mobileNumber, data, summary)
-      }}
-        className="download-button">
-        Download PDF
-      </button>
-    </div>}
+        {search && !loading && <div className="download-section">
+          <button onClick={() => {
+            downloadPDF(mobileNumber, data, summary)
+          }}
+            className="download-button">
+            Download PDF
+          </button>
+        </div>}
       </section>
     </main>
   )

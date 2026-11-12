@@ -1,4 +1,3 @@
-
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 
@@ -30,7 +29,7 @@ export default function downloadPDF(mobileNumber, data, summary) {
             p.platform, "Travel", p.status
         ])
     ];
-
+console.log(rows);
     // Summary
     doc.setFont("helvetica", "bold");
     doc.text("Overall Summary", 14, 42);

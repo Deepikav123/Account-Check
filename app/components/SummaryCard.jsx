@@ -17,9 +17,9 @@ export default function SummaryCard({ accountData, setData,summary }) {
     const [retryLoading, setRetryLoading] = useState(false);
     const [errMessage, setErrMessage] = useState("");
     const failedData = accountData.filter((a) => a.status === "Check failed");
+
     async function retryFailed() {
         setRetryLoading(true);
-
         setErrMessage("");
         try {
             const response = await fetch("/api/check-account", {
@@ -38,6 +38,7 @@ export default function SummaryCard({ accountData, setData,summary }) {
             }
 
             setData((prevData) => {
+
                 const updateCategory = (category) => {
                     return category.map((plat) => {
                         const updated = resultData.updatedData.find(

@@ -145,7 +145,7 @@ td:nth-child(3) {
 th,
 td {
   padding: 10px 2px;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .result-card {
@@ -178,7 +178,7 @@ td {
   padding: 5px 4px;
   border-radius: 20px;
   color: white;
-  font-size: 11px;
+  font-size: 14px;
   max-width: 100%;
   box-sizing: border-box;
 }
@@ -296,6 +296,14 @@ td {
     width: 100%;
     padding: 15px;
   }
+
+  .platform-status-registered,
+.platform-status-not-registered,
+.platform-status-check-failed {
+  
+  font-size: 11px;
+ 
+}
 }
 
 /* Download */

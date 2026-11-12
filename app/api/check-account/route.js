@@ -95,12 +95,14 @@ export async function POST(req) {
         await new Promise((resolve) => {
             setTimeout(resolve, Math.random() * 1000 + 1000);
         })
+
         const allPlatforms = [
             ...socialMediaObject,
             ...eCommerceObject,
             ...foodDeliveryObject,
             ...travelObject
         ];
+        
         const failedCheckIndex = Math.floor(Math.random() * allPlatforms.length);
         allPlatforms[failedCheckIndex].status = "Check failed"
         const result = {
@@ -137,13 +139,6 @@ export async function PUT(req) {
             );
         }
 
-        const validate = data.filter((d) => d.status != "Check failed");
-        if (validate.length > 0) {
-            return Response.json(
-                { message: "Incorrect data" },
-                { status: 400 }
-            )
-        }
         await new Promise((resolve) => {
             setTimeout(resolve, Math.random() * 1000 + 1000);
         })
